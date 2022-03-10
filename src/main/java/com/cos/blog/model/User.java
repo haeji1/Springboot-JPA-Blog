@@ -31,7 +31,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //프로젝트에서 연결 된 DB 넘버링 전략
 	private int id;
 	
-	@Column(nullable = false, length = 30,unique = true)
+	@Column(nullable = false, length = 30, unique =  true)
 	private String username; //아이디
 	
 	@Column(nullable = false, length = 100)
