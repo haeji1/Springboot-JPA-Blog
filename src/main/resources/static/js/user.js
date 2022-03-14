@@ -20,19 +20,19 @@ let index = {
 		//ajax가 통신 성공하고 서버가 json 리턴해주면 자동으로 자바 오브젝트로 변환
 		$.ajax({
 			type:"POST",
-			url: "/blog/api/user",
+			url: "/auth/joinProc",
 			data: JSON.stringify(data),
 			contentType:"application/json; charset=utf-8", //body데이터가 어떤 타입인지
 			dataType:"json" //서버로 요청해서 응답이 왔을 때 json이면 자바스크립트로 변경
 		}).done(function(resp){
 			alert("회원가입이 완료되었습니다.");
 			//console.log(resp);
-		
-			location.href = "/blog";
+			location.href = "/";
 		}).fail(function(error){
 			alert(JSON.stringify(error));
 		}); 
-	}
+		
+	},
 }
 
 index.init();
