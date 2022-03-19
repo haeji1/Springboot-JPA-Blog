@@ -1,6 +1,6 @@
 package com.cos.blog.model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,7 +14,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
@@ -39,10 +38,9 @@ public class Board {
 		@Lob // 대용량 데이터
 		private String content;
 		
-		@ColumnDefault("0")
 		private int count; // 조회수
 		
-		@ManyToOne  //Many = Board, User = One
+		@ManyToOne(fetch = FetchType.EAGER)  //Many = Board, User = One
 		@JoinColumn(name="userId")
 		private User user;
 		
@@ -50,6 +48,6 @@ public class Board {
 		private List<Reply> reply;
 		
 		@CreationTimestamp
-		private Timestamp createDate;
+		private LocalDateTime createDate;
 		
 }

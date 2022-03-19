@@ -23,7 +23,7 @@ import com.cos.blog.model.RoleType;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.UserRepository;
 
-import antlr.collections.List;
+import java.util.List;
 
 
 //html파일이 아니라 data를 리턴해주는 controller
@@ -71,17 +71,17 @@ public class DummyControllerTest {
 	}
 	
 	@GetMapping("/dummy/users")
-	public java.util.List<User>list(){
+	public List<User>list(){
 		return userRepository.findAll();
 	}
 	
 	//한 페이지당 2건의 데이터 리턴받기
 	@GetMapping("/dummy/user")
-	public java.util.List<User>pageList(@PageableDefault(size=2 , sort = "id" , direction = Sort.Direction.DESC) Pageable pageable){
+	public Page<User> pageList(@PageableDefault(size=2 , sort = "id" , direction = Sort.Direction.DESC) Pageable pageable){
 		Page<User> pagingUser = userRepository.findAll(pageable);
 		
-		java.util.List<User> users = pagingUser.getContent();
-		return users;
+		List<User> users = pagingUser.getContent(); 
+		return pagingUser;
 	}
 	
 	//{id} 주소로 파라미터 전달 받을 수 있다
