@@ -3,6 +3,7 @@ package com.cos.blog.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -47,7 +48,7 @@ public class Board {
 		@JoinColumn(name="userId")
 		private User user;
 		
-		@OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+		@OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 		@JsonIgnoreProperties({"board"})
 		@OrderBy("id desc")
 		private List<Reply> replys;
